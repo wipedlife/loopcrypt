@@ -30,7 +30,9 @@ create_loop(){
                 fi;
         fi;
 
-        dd if=/dev/zero of=$1 count=1 bs=$2
+	read -p "bs(block size): (1G/1024/512M/3G)" bs
+
+        dd if=/dev/zero of=$1 count=$2 bs=$bs
 
         if yn "Create new loop device? ";then
                 read -sp "Write name of the loop device: " loop_n
@@ -49,8 +51,8 @@ pvcreat(){
 	if ! yn "I will create one main volume?";then
 	while yn "Create more a logical volume? (you will create main volume!)"
 	do
-		read -s "Size (G/M/K/...): " size
-		read -s "Name: " name
+		read -p "Size (G/M/K/...): " size
+		read -p "Name: " name
 		lvcreate -L $size -n "/dev/loopcrypt0/$name"
 	done;
 	else

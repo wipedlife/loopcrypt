@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ $# \< 2 ];then
-	echo "$0 NameOfLoopDevice Size(M/G/..)"
+	echo "$0 NameOfLoopDevice BLOCKS(size of block you will select later)(5 blocks as example)"
 	exit 0;
 fi;
 
